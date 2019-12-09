@@ -5,13 +5,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="TravelRecordApp.HistoryPage">
-    <ContentPage.Content>
-        <StackLayout>
-            
-            <Label Text="Welcome to History Page!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            
-        </StackLayout>
-    </ContentPage.Content>
+
+    <ListView x:Name="ListViewPosts">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextCell Text="{Binding Experience}"></TextCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>
