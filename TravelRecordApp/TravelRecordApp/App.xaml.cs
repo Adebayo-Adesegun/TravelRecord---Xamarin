@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Android;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,9 +21,10 @@ namespace TravelRecordApp
             InitializeComponent();
             MainPage = new NavigationPage(new MainPage());
             DatabaseLocation = databaseLocation;
+            
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
             // Handle when your app starts
         }

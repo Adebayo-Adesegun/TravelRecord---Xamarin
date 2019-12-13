@@ -8,7 +8,8 @@
              x:Class="TravelRecordApp.MapPage">
 
 
-    <maps:Map x:Name="MapLocations" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+    <maps:Map x:Name="MapLocations" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+              IsShowingUser="False">
         
     </maps:Map>
     
