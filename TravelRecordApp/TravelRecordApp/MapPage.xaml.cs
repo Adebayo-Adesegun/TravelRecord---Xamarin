@@ -1,4 +1,6 @@
-﻿using Plugin.Permissions;
+﻿using Plugin.Geolocator;
+using Plugin.Geolocator.Abstractions;
+using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,8 @@ namespace TravelRecordApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MapPage : ContentPage
     {
+        public bool hasLocationPermission = false;
+
         public MapPage()
         {
             InitializeComponent();
@@ -40,7 +44,9 @@ namespace TravelRecordApp
                 if (status == PermissionStatus.Granted)
                 {
                     //Permission granted, do what you want do.
-                    MapLocations.IsShowingUser = true;
+                    hasLocationPermission = true;
+                    MapLocations.IsShowingUser = hasLocationPermission;
+                    GetLocation();
                 }
                 else if (status != PermissionStatus.Unknown)
                 {
@@ -54,9 +60,52 @@ namespace TravelRecordApp
         }
 
 
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            if (hasLocationPermission)
+            {
+                var locator = CrossGeolocator.Current;
+                locator.PositionChanged += Locator_PositionChanged;
+            }
+            GetLocation();
+        }
+
+        /// <summary>
+        /// Executed everytime there's a location change on the Map
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Locator_PositionChanged(object sender, PositionEventArgs e)
+        {
+            MoveMap(e.Position); // Move to new position on map
+        }
+
+        /// <summary>
+        /// Get current location based on user's consented permission
+        /// </summary>
+        private async void GetLocation()
+        {
+            if (hasLocationPermission)
+            {
+                var locator = CrossGeolocator.Current;
+                var position = await locator.GetPositionAsync();
+                MoveMap(position);
+            }
+        }
+
+        /// <summary>
+        /// Move to location on map based on Latitude and Longitude passed.
+        /// </summary>
+        /// <param name="position"></param>
+        private void MoveMap(Position position)
+        {
+            var center = new Xamarin.Forms.Maps.Position(position.Latitude, position.Longitude);
+            var mapSpan = new Xamarin.Forms.Maps.MapSpan(center, 1, 1);
+            MapLocations.MoveToRegion(mapSpan);
+        }
 
 
-       
     }
 
    
