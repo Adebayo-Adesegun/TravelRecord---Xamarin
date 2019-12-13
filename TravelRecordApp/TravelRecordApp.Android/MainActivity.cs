@@ -23,6 +23,9 @@ namespace TravelRecordApp.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
+            // Instantiate Maps for android 
+            Xamarin.FormsMaps.Init(this, savedInstanceState);
+
             #region Get Folder Path for Current Device
             string dbName = "travel_db.sqlite";
             string folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
