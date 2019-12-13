@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="TravelRecordApp.HistoryPage">
 
-    <ListView x:Name="ListViewPosts">
+    <ListView x:Name="ListViewPosts" ItemSelected="ListViewPosts_ItemSelected">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <TextCell Text="{Binding Experience}"></TextCell>

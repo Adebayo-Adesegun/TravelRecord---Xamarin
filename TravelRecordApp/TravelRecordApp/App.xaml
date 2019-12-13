@@ -17,6 +17,11 @@
                 <Setter Property="TextColor" Value="{StaticResource whiteColor}"></Setter>
                 <Setter Property="CornerRadius" Value="25"></Setter>
             </Style>
+
+            <!--<Style TargetType="StackLayout">
+                <Setter Property="Margin" Value="20,0"></Setter>
+                <Setter Property="VerticalOptions" Value="Center"></Setter>
+            </Style>-->
             
         </ResourceDictionary>
     </Application.Resources>

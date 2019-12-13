@@ -25,6 +25,7 @@ namespace TravelRecordApp
             {
                 using (var conn = new SQLiteConnection(App.DatabaseLocation))
                 {
+                    conn.CreateTable<Post>(); 
                     List<Post> posts = conn.Table<Post>().ToList();
                     ListViewPosts.ItemsSource = posts;
 
@@ -35,6 +36,17 @@ namespace TravelRecordApp
                 await DisplayAlert("Failure", ex.Message, "Ok");
             }
 
+        }
+
+        private async void ListViewPosts_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var selectedPost = ListViewPosts.SelectedItem as Post;
+            if (selectedPost != null)
+            {
+                // Naviagte to Detail Page
+                await Navigation.PushAsync(new PostDetailPage(selectedPost));
+            }
+            
         }
     }
 }
