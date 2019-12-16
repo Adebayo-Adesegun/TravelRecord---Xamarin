@@ -14,6 +14,29 @@
     <ContentPage.Content>
         <StackLayout>
             <Entry x:Name="EntryExperience" Placeholder="Write your experience"></Entry>
+
+            <ListView x:Name="ListViewVenue">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Label Text="{Binding name}}" FontAttributes="Bold"></Label>
+                                <Label ></Label>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>  
+            </ListView>
             
         </StackLayout>
     </ContentPage.Content>
