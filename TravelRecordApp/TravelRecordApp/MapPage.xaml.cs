@@ -66,9 +66,17 @@ namespace TravelRecordApp
             if (hasLocationPermission)
             {
                 var locator = CrossGeolocator.Current;
-                locator.PositionChanged += Locator_PositionChanged;
+                locator.PositionChanged += Locator_PositionChanged; // Subscribe to the Position Changed method
+                await locator.StartListeningAsync(TimeSpan.Zero, 100); // Listen for changes on the map
             }
             GetLocation();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            CrossGeolocator.Current.StopListeningAsync(); // Stop Listening for changed 
+            CrossGeolocator.Current.PositionChanged -= Locator_PositionChanged; // Unsubscribe from position changed method
         }
 
         /// <summary>
