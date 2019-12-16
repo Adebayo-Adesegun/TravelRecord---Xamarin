@@ -15,7 +15,7 @@
         <StackLayout>
             <Entry x:Name="EntryExperience" Placeholder="Write your experience"></Entry>
 
-            <ListView x:Name="ListViewVenue">
+            <ListView x:Name="ListViewVenue" HorizontalOptions="FillAndExpand" Margin="20, 0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -30,8 +30,10 @@
                                     <RowDefinition Height="*"></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <Label Text="{Binding name}}" FontAttributes="Bold"></Label>
-                                <Label ></Label>
+                                <Label Text="{Binding Name}" FontAttributes="Bold"></Label>
+                                <Label Grid.Row="1" Text="{Binding Location.Address}" TextColor="{StaticResource blueColor}"></Label>
+                                <Label Grid.Column="1" Text="{Binding Location.Distance, StringFormat = '{0} m'}"></Label>
+                                
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
